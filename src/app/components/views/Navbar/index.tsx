@@ -8,8 +8,8 @@ import { BsCart2 } from "react-icons/bs";
 import { BiChevronDown } from "react-icons/bi";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdClose } from "react-icons/io";
-import DropDown from "./subComponents/dropDown";
-import MobileNavBar from "./subComponents/MobileNavBar";
+import Expand from "./subComponents/Expand";
+import DropDown from "./subComponents/DropDown";
 
 const Navbar = () => {
   const [isNavbarOpen, setNavbarOpen] = useState<boolean>(false);
@@ -79,3 +79,15 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+const MobileNavBar = () => {
+  return (
+    <div className="w-full px-6 py-4 bg-gray-100">
+      {
+        navbarArray.map((item :NavbarItemType, index:number) => (
+          <Expand key={index} item={item} />
+          ))
+      }
+    </div>
+  );
+};

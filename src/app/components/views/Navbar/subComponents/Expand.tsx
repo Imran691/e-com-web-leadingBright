@@ -1,44 +1,35 @@
+import { FC } from "react"
+import { HiOutlineChevronDown } from "react-icons/hi"
+import { navbarArray, NavbarItemType } from "@/app/components/utils/NavbarArrayAndTypes";
+import Link from "next/link"
+import { useState } from "react"
 
-import { FC } from "react";
-import {
-  NavbarItemType,
-  navbarArray,
-} from "@/app/components/utils/NavbarArrayAndTypes";
-import Link from "next/link";
-import React, { useState } from "react";
-import { BiChevronDown } from "react-icons/bi";
+const Expand: FC<{ item: NavbarItemType }> = ({ item }) => {
+    const [isExpended, setExpended] = useState<boolean>(false);
+    const [isTimeOut, setTimeOut] = useState<boolean>(false);
 
-const Expand: FC<{item :NavbarItemType}> = ({ item}) => {
+    function handleExpand() {
+        setExpended(!isExpended);
+        setTimeout(() => {
+            setTimeOut(!isTimeOut);
+        }, 100);
+    }
 
-  
-  const [isExpanded, setExpanded] = useState(false)
-  return (
+    return (
+        <li className={`${isExpended ? "h-56" : "h-12"} duration-300 list-none`}>
+            <div onClick={handleExpand} className=" py-2 px-3 flex duration-300 rounded-md hover:bg-purple-600 items-center justify-between">
+                <Link href={item.href}>{item.label}</Link>
+                {item.isDropDown ? <HiOutlineChevronDown className="mt-1 -rotate-180 group-hover:rotate-0 duration-300" size={15} /> : ""}
+            </div>
+            <div className="flex flex-col space-y-1 mt-2">
+                {isTimeOut && item.dropDownData?.map((subItem: NavbarItemType, index: number) => (
+                    <Link key={index} className="hover:bg-gray-50 rounded-md py-1 px-5 duration-300 " href={subItem.href}>
+                        {subItem.label}
+                    </Link>
+                ))}
+            </div>
+        </li>
+    )
+}
 
-    <li className={`${isExpanded? "h-40" : "h-12"} list-none`} >
-    <div onClick={ () => setExpanded(!isExpanded)} className="flex justify-between items-center  py-2 px-3 hover:bg-purple-400 rounded-md duration-300">
-    <Link href={item.href}>{item.label}</Link>
-    {item.isDropDown ? (
-      <BiChevronDown className="mt-1 rotate-180 group-hover:rotate-0 duration-300" />
-    ) : (
-      ""
-    )}
-    </div>
- 
-
-    <div className="flex flex-col mt-1">
-      {isExpanded &&
-        item.dropDownData?.map((subItem: NavbarItemType, index: number) => (
-          <Link
-            className="hover:bg-gray-100 duration-300 px-5 py-1 rounded-md"
-            href={subItem.href}
-            key={index}
-          >
-            {subItem.label}
-          </Link>
-        ))}
-    </div>
-    </li>
-  );
-};
-
-export default Expand;
+export default Expand

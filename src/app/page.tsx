@@ -1,12 +1,27 @@
 import Image from 'next/image'
 import Hero from './components/views/Hero'
 import ProductTypes from './components/views/ProductTypes'
+import BASE_PATH_FORAPI from './components/shared/basePath'
+import ProductCarousal from './components/views/ProductCarousal'
 
-export default function Home() {
+async function fetchAllProductsData() {
+  // let res = await fetch(`${BASE_PATH_FORAPI}/api/products`)
+  // if(!res.ok){
+  //   throw new Error("Failed to fetch data!")
+  // }
+  // return res.json()
+
+  return { response: "Hi"}
+}
+
+export default async function Home() {
+  let {response} = await fetchAllProductsData()
+  console.log("response: " , response)
   return (
     <main>
-     <Hero />
-     <ProductTypes />
+     {/* <Hero />
+     <ProductTypes /> */}
+     <ProductCarousal ProductData = {response} />
     </main>
   )
 }

@@ -17,7 +17,7 @@ const Hero = () => {
           Sale 70%
         </button>
         <h1 className="text-4xl md:text-7xl text-gray-800 font-bold ">
-          An Industrial Take on Streetwear
+          An Industrial Take on Street wear
         </h1>
         <p className="text-gray-700 font-medium">
           Anyone can beat you but no one can beat your outfit as long as you

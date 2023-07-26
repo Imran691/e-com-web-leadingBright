@@ -19,8 +19,8 @@ export default async function Home() {
   console.log("response: " , response)
   return (
     <main>
-     {/* <Hero />
-     <ProductTypes /> */}
+     <Hero />
+     <ProductTypes />
      <ProductCarousal ProductData = {response} />
     </main>
   )

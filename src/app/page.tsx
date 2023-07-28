@@ -17,8 +17,8 @@ export default async function Home() {
 
   return (
     <main>
-     {/* <Hero />
-     <ProductTypes /> */}
+     <Hero />
+     <ProductTypes />
      <ProductCarousal ProductData = {response} />
     </main>
   )

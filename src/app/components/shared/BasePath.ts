@@ -1,4 +1,4 @@
-//To be used in home page.tsx as a variable to fetch data
+//To be used in home page.tsx as a variable to fetch data from Sanity
 
 const BASE_PATH_FORAPI =
   process.env.NODE_ENV === "development"

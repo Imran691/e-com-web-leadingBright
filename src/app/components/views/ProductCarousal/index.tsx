@@ -44,7 +44,7 @@ export default class ProductCarousal extends Component<{ProductData: Array<onePr
       
         <Slider {...settings}>
         {this.props.ProductData.map((item: oneProductType, index: number) => (
-        <Card singleProductData={item} />
+        <Card key={index} singleProductData={item} />
       ))}
         </Slider>
     

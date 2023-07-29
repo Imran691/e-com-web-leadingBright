@@ -17,9 +17,9 @@ const Navbar = () => {
   return (
     <div className="sticky top-0 backdrop-blur-lg bg-opacityDownColor z-50">
       <div className="flex py-6 justify-between items-center space-x-12">
-        <div className="flex shrink-0 w-36">
+        <Link href="/" className="flex shrink-0 w-36">
           <Image src={"/Logo.webp"} alt="Logo" width={500} height={500} />
-        </div>
+        </Link>
 
         <div className="hidden lg:flex justify-between items-center w-full">
           <ol className="flex space-x-4 font-medium text-purple-950">

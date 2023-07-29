@@ -3,6 +3,8 @@ import Hero from './components/views/Hero'
 import ProductTypes from './components/views/ProductTypes'
 import BASE_PATH_FORAPI from './components/shared/BasePath'
 import ProductCarousal from './components/views/ProductCarousal'
+import Jewelry from './components/views/ProductCarousal/Jewelry'
+import NewsLetter from './components/views/NewsLetter'
 
 async function fetchAllProductsData() {
   let res = await fetch(`${BASE_PATH_FORAPI}/api/products`)
@@ -20,6 +22,8 @@ export default async function Home() {
      <Hero />
      <ProductTypes />
      <ProductCarousal ProductData = {response} />
+     <Jewelry />
+     <NewsLetter />
     </main>
   )
 }

@@ -1,4 +1,5 @@
 import Wrapper from "./components/shared/Wrapper";
+import Footer from "./components/views/Footer";
 import Navbar from "./components/views/Navbar";
 import "./globals.css";
 import { Maven_Pro } from "next/font/google";
@@ -23,7 +24,10 @@ export default function RootLayout({
       <body className={inter.className}>
         <Wrapper>
           <Navbar />
+          <div className="min-h-screen">
           {children}
+          </div>
+          <Footer />
         </Wrapper>
       </body>
     </html>

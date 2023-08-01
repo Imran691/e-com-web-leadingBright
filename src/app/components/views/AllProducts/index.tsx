@@ -46,7 +46,6 @@ export default class ALLProductsCompo extends Component<{
 
   render() {
     return (
-      <div onClick={ this.getData }>
         <InfiniteScroll
           dataLength={this.state.items.length} //This is important field to render the next data
           next={this.getData}
@@ -57,13 +56,12 @@ export default class ALLProductsCompo extends Component<{
               <b>Yay! You have seen it all</b>
             </p>
           }
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-10"
         >
           {this.state.items.map( (item:oneProductType, index:number) => (
             <Card key={index} singleProductData={item}/>
           ))}
         </InfiniteScroll>
-      </div>
     );
   }
 }

@@ -8,9 +8,7 @@ import Card from "../Card";
 interface propsType {
   productArray: Array<oneProductType>;
 }
-export default class ALLProductsCompo extends Component<{
-  ProductsData: propsType;
-}> {
+export default class ALLProductsCompo extends Component<{ProductsData: propsType}> {
   start: number = 0;
   end: number = 10;
   state: {items:Array<oneProductType>, hasMore: boolean} = {

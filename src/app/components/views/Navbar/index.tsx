@@ -10,10 +10,21 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdClose } from "react-icons/io";
 import Expand from "./subComponents/Expand";
 import DropDown from "./subComponents/DropDown";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const [isNavbarOpen, setNavbarOpen] = useState<boolean>(false);
   const [cartItemNumber, setCartItemNumber] = useState<number>(0)
+  const [searchQuery, setSearchQuery] = useState("")
+  const router = useRouter()
+
+function handleSearchCalledFunction(e:any){
+console.log(e.key, e.keyCode)
+if (e.key === "Enter" && e.keyCode === 13){
+  router.push(`/search/${searchQuery}`)
+}
+}
+
   return (
     <div className="sticky top-0 backdrop-blur-lg bg-opacityDownColor z-50">
       <div className="flex py-6 justify-between items-center space-x-12">
@@ -45,9 +56,12 @@ const Navbar = () => {
           </ol>
 
           <div className="border flex items-center text-gray-600 px-3 rounded-md">
-            <BiSearch />
+           <Link href={`/search/${searchQuery}`}><BiSearch /></Link> 
             <input
               type="text"
+              value={searchQuery}
+              onChange={ (e) => setSearchQuery(e.target.value) }
+              onKeyDown={handleSearchCalledFunction}
               placeholder="Search our store"
               className="py-1 pl-1 pr-5 w-80 focus:outline-none"
             />

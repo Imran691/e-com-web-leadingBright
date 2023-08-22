@@ -8,7 +8,6 @@ import Link from "next/link";
 // import PortableText from "react-portable-text"  //library to render portable text (description in this case)
 
 const builder = imageUrlBuilder(client);
-
 // function to create URL for images
 function urlFor(source: any) {
   return builder.image(source);

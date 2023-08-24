@@ -10,7 +10,7 @@ interface propsType {
 }
 export default class ALLProductsCompo extends Component<{ProductsData: propsType}> {
   start: number = 0;
-  end: number = 10;
+  end: number = 20;
   state: {items:Array<oneProductType>, hasMore: boolean} = {
     items: [...this.props.ProductsData.productArray],
     hasMore: true,

@@ -16,17 +16,17 @@ function urlFor(source: any) {
 }
 
 const ProductDetail: FC<{ item: oneProductType }> = ({ item }) => {
+  const [imageForPreviewOfSelected, setImageForPreviewOfSelected] =
+    useState<string>(item.image[0]._key);
+  const [quantity, setQuantity] = useState(1);
 
-  const [imageForPreviewOfSelected, setImageForPreviewOfSelected] = useState<string>(item.image[0]._key);
-  const [quantity, setQuantity] = useState(1)
-
-  function incrementTheQuantity(){
-    setQuantity(quantity + 1)
+  function incrementTheQuantity() {
+    setQuantity(quantity + 1);
   }
 
-  function decrementTheQuantity(){
-    if(quantity !== 0) {
-      setQuantity(quantity - 1)
+  function decrementTheQuantity() {
+    if (quantity !== 0) {
+      setQuantity(quantity - 1);
     }
   }
 
@@ -57,6 +57,7 @@ const ProductDetail: FC<{ item: oneProductType }> = ({ item }) => {
             if (subItem._key === imageForPreviewOfSelected) {
               return (
                 <Image
+                  key={index}
                   alt={subItem.alt}
                   src={urlFor(subItem).width(1000).height(1000).url()}
                   width={1000}
@@ -72,35 +73,47 @@ const ProductDetail: FC<{ item: oneProductType }> = ({ item }) => {
       <div className="p-6 space-y-8">
         <div>
           <h1 className="text-3xl text-gray-700">{item.productName}</h1>
-          <p className="text-xl text-purple-900 font-medium">{item.productTypes[1]}</p>
+          <p className="text-xl text-purple-900 font-medium">
+            {item.productTypes[1]}
+          </p>
         </div>
         <div className="space-y-2">
           <p className="text-lg font-semibold text-gray-700">SELECT SIZE</p>
           <div className="flex gap-2 text-purple-900">
-            {
-              item.size.map( (subItem: string, index:number) => (
-                <div key={index} className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 cursor-pointer font-semibold hover:shadow-xl">{subItem}</div>
-              ))
-            }
+            {item.size.map((subItem: string, index: number) => (
+              <div
+                key={index}
+                className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 cursor-pointer font-semibold hover:shadow-xl"
+              >
+                {subItem}
+              </div>
+            ))}
           </div>
         </div>
         <div className="flex space-x-7">
           <p className="font-semibold text-lg text-gray-700">Quantity:</p>
           <div className="flex items-center gap-2 text-lg">
             <div
-            onClick={decrementTheQuantity}
-            className="flex items-center justify-center rounded-full border border-gray-800 w-9 h-9 cursor-pointer select-none">-</div>
+              onClick={decrementTheQuantity}
+              className="flex items-center justify-center rounded-full border border-gray-800 w-9 h-9 cursor-pointer select-none"
+            >
+              -
+            </div>
             <p>{quantity}</p>
-            <div 
-            onClick={incrementTheQuantity}
-            className="flex items-center justify-center rounded-full border border-gray-800 w-9 h-9 cursor-pointer select-none">+</div>
+            <div
+              onClick={incrementTheQuantity}
+              className="flex items-center justify-center rounded-full border border-gray-800 w-9 h-9 cursor-pointer select-none"
+            >
+              +
+            </div>
           </div>
         </div>
         <div className="flex items-center gap-x-8">
-        <button className="flex  items-center gap-x-2 text-white bg-gray-900 border border-gray-500 px-4 py-2">
-          <BsCart2 />
-          Add to cart</button>
-        <p className="text-2xl font-semibold">${item.price}.00</p>
+          <button className="flex  items-center gap-x-2 text-white bg-gray-900 border border-gray-500 px-4 py-2">
+            <BsCart2 />
+            Add to cart
+          </button>
+          <p className="text-2xl font-semibold">${item.price}.00</p>
         </div>
       </div>
     </div>

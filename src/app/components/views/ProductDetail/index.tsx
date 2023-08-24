@@ -79,7 +79,7 @@ const ProductDetail: FC<{ item: oneProductType }> = ({ item }) => {
           <div className="flex gap-2 text-purple-900">
             {
               item.size.map( (subItem: string, index:number) => (
-                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 cursor-pointer font-semibold hover:shadow-xl">{subItem}</div>
+                <div key={index} className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 cursor-pointer font-semibold hover:shadow-xl">{subItem}</div>
               ))
             }
           </div>

@@ -12,9 +12,12 @@ import Expand from "./subComponents/Expand";
 import DropDown from "./subComponents/DropDown";
 import { useRouter } from "next/navigation";
 
+
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
+
 const Navbar = () => {
   const [isNavbarOpen, setNavbarOpen] = useState<boolean>(false);
-  const [cartItemNumber, setCartItemNumber] = useState<number>(0)
   const [searchQuery, setSearchQuery] = useState("")
   const router = useRouter()
 
@@ -24,6 +27,9 @@ if (e.key === "Enter" && e.keyCode === 13){
   router.push(`/search/${searchQuery}`)
 }
 }
+
+
+const cartValue = useSelector( (state: RootState) => state.cartSlice.totalQuantity);
 
   return (
     <div className="sticky top-0 backdrop-blur-lg bg-opacityDownColor z-50">
@@ -67,13 +73,17 @@ if (e.key === "Enter" && e.keyCode === 13){
             />
           </div>
 
+
+
           <div className=" relative w-11 h-11 bg-gray-300 rounded-full flex items-center justify-center shrink-0">
             <div className="absolute w-4 h-4 top-1 right-2 text-xs font-light bg-red-400 rounded-full flex items-center justify-center">
-              {cartItemNumber}
+              {cartValue}
             </div>
             <BsCart2 size={24} />
           </div>
         </div>
+
+
 
         <div onClick={() => setNavbarOpen(!isNavbarOpen)}>
           {isNavbarOpen ? (

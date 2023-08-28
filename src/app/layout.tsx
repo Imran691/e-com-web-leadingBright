@@ -1,3 +1,4 @@
+import Providers from "./components/Provider";
 import Wrapper from "./components/shared/Wrapper";
 import Footer from "./components/views/Footer";
 import Navbar from "./components/views/Navbar";
@@ -23,11 +24,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Wrapper>
+          <Providers>         
           <Navbar />
           <div className="min-h-screen">
           {children}
           </div>
           <Footer />
+          </Providers>
         </Wrapper>
       </body>
     </html>

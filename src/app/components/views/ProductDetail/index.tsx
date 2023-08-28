@@ -10,6 +10,10 @@ import ImageUrlBuilder from "@sanity/image-url";
 import Image from "next/image";
 import { BsCart2 } from "react-icons/bs";
 
+import { useDispatch } from "react-redux";
+import { cartActions } from "@/store/slice/cartSlice";
+import { toast } from "react-hot-toast";
+
 const builder: any = ImageUrlBuilder(client);
 function urlFor(source: any) {
   return builder.image(source);
@@ -28,6 +32,12 @@ const ProductDetail: FC<{ item: oneProductType }> = ({ item }) => {
     if (quantity !== 0) {
       setQuantity(quantity - 1);
     }
+  }
+
+  const dispatch = useDispatch()
+  const addItem = () => {
+    dispatch(cartActions.addToCart({quantity:1}))
+    toast.success("Product Added")
   }
 
   return (
@@ -109,10 +119,16 @@ const ProductDetail: FC<{ item: oneProductType }> = ({ item }) => {
           </div>
         </div>
         <div className="flex items-center gap-x-8">
-          <button className="flex  items-center gap-x-2 text-white bg-gray-900 border border-gray-500 px-4 py-2">
+
+
+          <button 
+          onClick={addItem}
+          className="flex  items-center gap-x-2 text-white bg-gray-900 border border-gray-500 px-4 py-2">
             <BsCart2 />
             Add to cart
           </button>
+
+
           <p className="text-2xl font-semibold">${item.price}.00</p>
         </div>
       </div>
